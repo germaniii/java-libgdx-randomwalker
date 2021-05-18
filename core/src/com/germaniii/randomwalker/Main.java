@@ -16,6 +16,7 @@ public class Main extends ApplicationAdapter {
 	Random rand = new Random();
 	float circleX = 200;
 	float circleY = 100;
+	float r, g, b;
 	ArrayList<Circle> circle;
 
 	float xSpeed = 120;
@@ -34,8 +35,12 @@ public class Main extends ApplicationAdapter {
 		// randomly move x, y
 		circleX += xSpeed * Gdx.graphics.getDeltaTime() * ((rand.nextInt(3)) - 1);
 		circleY += ySpeed * Gdx.graphics.getDeltaTime() * ((rand.nextInt(3)) - 1);
+		r = (float) Math.random();
+		g = (float) Math.random();
+		b = (float) Math.random();
 
-		circle.add(new Circle(circleX, circleY));
+
+		circle.add(new Circle(circleX, circleY, r, g, b));
 
 		// Bounds conditions for X
 		if(circleX < 0){
@@ -55,7 +60,7 @@ public class Main extends ApplicationAdapter {
 		// Render Circle
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		for (Circle iter : circle) {
-			shapeRenderer.setColor((float) Math.random(),(float) Math.random(), (float) Math.random(), 1);
+			shapeRenderer.setColor(iter.getR(),iter.getG(), iter.getB(), 1);
 			shapeRenderer.circle(iter.getX(), iter.getY(), 3);
 		}
 
