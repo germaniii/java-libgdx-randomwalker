@@ -55,6 +55,7 @@ public class Main extends ApplicationAdapter {
 		// Render Circle
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		for (Circle iter : circle) {
+			shapeRenderer.setColor((float) Math.random(),(float) Math.random(), (float) Math.random(), 1);
 			shapeRenderer.circle(iter.getX(), iter.getY(), 3);
 		}
 
