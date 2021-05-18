@@ -18,8 +18,8 @@ public class Main extends ApplicationAdapter {
 	float circleY = 100;
 	ArrayList<Circle> circle;
 
-	float xSpeed = 60;
-	float ySpeed = 60;
+	float xSpeed = 120;
+	float ySpeed = 120;
 	
 	@Override
 	public void create () {
@@ -54,7 +54,6 @@ public class Main extends ApplicationAdapter {
 
 		// Render Circle
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-		shapeRenderer.setColor(0, 1, 0, 1);
 		for (Circle iter : circle) {
 			shapeRenderer.circle(iter.getX(), iter.getY(), 3);
 		}
