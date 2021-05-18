@@ -7,14 +7,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class Main extends ApplicationAdapter {
 	ShapeRenderer shapeRenderer;
 	Random rand = new Random();
-
 	float circleX = 200;
 	float circleY = 100;
+	ArrayList<Circle> circle;
 
 	float xSpeed = 60;
 	float ySpeed = 60;
@@ -22,6 +24,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		shapeRenderer = new ShapeRenderer();
+		circle = new ArrayList<>();
 	}
 
 	@Override
@@ -31,6 +34,8 @@ public class Main extends ApplicationAdapter {
 		// randomly move x, y
 		circleX += xSpeed * Gdx.graphics.getDeltaTime() * ((rand.nextInt(3)) - 1);
 		circleY += ySpeed * Gdx.graphics.getDeltaTime() * ((rand.nextInt(3)) - 1);
+
+		circle.add(new Circle(circleX, circleY));
 
 		// Bounds conditions for X
 		if(circleX < 0){
@@ -50,11 +55,15 @@ public class Main extends ApplicationAdapter {
 		// Render Circle
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		shapeRenderer.setColor(0, 1, 0, 1);
-		shapeRenderer.circle(circleX, circleY, 3);
+		for (Circle iter : circle) {
+			shapeRenderer.circle(iter.getX(), iter.getY(), 3);
+		}
+
 		shapeRenderer.end();
 	}
 	
 	@Override
 	public void dispose () {
+		shapeRenderer.dispose();
 	}
 }
